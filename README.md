@@ -1,1 +1,2 @@
 # NLP_Semiconductor_ConCall_prediction
+#專案進度報告，目前仍在進行調整與優化中
