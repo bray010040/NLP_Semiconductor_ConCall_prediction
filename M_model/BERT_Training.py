@@ -11,6 +11,8 @@ from transformers import InputExample, InputFeatures
 import tensorflow as tf
 import pandas as pd
 import xlrd
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
 
 model = TFBertForSequenceClassification.from_pretrained("bert-base-uncased")
 tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
@@ -123,4 +125,9 @@ plt.show()
 
 model.save_weights('/content/gdrive/MyDrive/Test/for_nlp/my_model_weights.h5')
 model = TFBertForSequenceClassification.from_pretrained("bert-base-uncased")
-model.load_weights('/content/gdrive/MyDrive/Test/for_nlp/my_model_weights.h5')
+predicted = model.predict(test['DATA_COLUMN'])
+report = classification_report(test['LABEL_COLUMN'], predicted)
+print(report)
+matrix = confusion_matrix(test['LABEL_COLUMN'], predicted)
+print(matrix)
+#model.load_weights('/content/gdrive/MyDrive/Test/for_nlp/my_model_weights.h5')
